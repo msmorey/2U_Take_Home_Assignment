@@ -4,6 +4,16 @@
 
 Now that you understand measures of central tendency, we're ready to take our understanding of stats to the next level. Many data projects draw conclusions but fall short of mathematically defending those conclusions. In this section, we'll explore the statistical tools available in Python that can help separate valuable insights from the noise. 
 
+## Learning Objectives
+
+In this lesson, you will:
+
+* Use the SciPy library.
+
+* Perform hypothesis testing using t-tests.
+
+* Interpret p-values.
+
 ## The SciPy Module
 
 The SciPy library contains a multitude of functions useful in scientific applications. In this section, we'll be using the statistical portion of the library.
@@ -179,4 +189,4 @@ The output of the print statement is below:
 
 The results are the same, but note that by using `ttest_ind`, we don't learn what the means actually are. We are simply given the p-value.
 
-Well the results are clear, with a p-value of 0.0015 (which is less than the threshold of 0.05) we can safely say that the difference in serve speed between right and left handed serves in this dataset is *statistically significant*. If you have any remaining questions, chat with your AI Assistant! For an extra challenge, try repeating these steps to compare serves on grass against serves on clay! 
+Well the results are clear, with a p-value of 0.0015 (which is less than the threshold of 0.05) we can safely say that the difference in serve speed between right and left handed serves in this dataset is *statistically significant*. If you have any remaining questions, chat with your AI Assistant! For an extra challenge, try repeating these steps to compare serves on grass against serves on clay!
