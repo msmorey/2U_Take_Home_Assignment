@@ -12,6 +12,8 @@ In this lesson, you will:
 
 * Perform hypothesis testing using t-tests.
 
+* Understand the difference between `ttest_ind` and `ttest_ind_from_stats`.
+
 * Interpret p-values.
 
 ## The SciPy Module
