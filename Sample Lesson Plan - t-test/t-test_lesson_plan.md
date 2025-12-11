@@ -60,6 +60,8 @@ To perform this test, the means, standard deviations, and total number of observ
 t = (difference between group means​) / (variability of groups)
 ```
 
+Effectively, this value will become larger if the difference between means increases or the standard deviations of each group become smaller and vice versa. The resulting `t` in this calculation is used to calculate a p-value.
+
 The `scipy` module gives us access to two ways to perform this test. You can calculate the means, standard deviations, and total number of rows for each group and enter them into the `ttest_ind_from_stats` function:
 
 ```python
