@@ -32,11 +32,11 @@ pip install scipy
 
 Imagine that sales were \$10k in March, \$9k in April, and $15k in March. Did something meaningful happen in March, or did that change happen by random chance? How can we quantify whether a conclusion is meaningful or just noise? Well, statistics has an answer for this: the *p-value*.
 
-    > A *p-value* is the probability of a specific result occurring by random chance.
+> A *p-value* is the probability of a specific result occurring by random chance.
 
 This means that if we run a statistical test on our results, **a lower p-value indicates a higher likelihood that our results are meaningful.**
 
-    > When the p-value from a test is below a pre-chosen threshold, the result is said to be *statistically significant*.
+> When the p-value from a test is below a pre-chosen threshold, the result is said to be *statistically significant*.
 
 In many research applications, statistical significance occurs a `p < 0.05`, though this threshold should be chosen for each project depending on risk tolerance. For a project where less risk is acceptable, setting a lower p-value may be appropriate. A higher threshold may be appropriate in applications that can tolerate more risk.
 
@@ -44,7 +44,7 @@ In many research applications, statistical significance occurs a `p < 0.05`, tho
 
 One of the most common statistics used in business is the **mean**. A *t-test* helps us statistically compare means.
 
-    > A *t-test* compares two means to determine whether the difference between them is statistically significant.
+> A *t-test* compares two means to determine whether the difference between them is statistically significant.
 
 For example, if we measure the speed of cars on a road and find that red cars drive an average of 5mph over the speed limit and blue cars drive an average of 1mph under the speed limit, the t-test can help us determine whether the difference in results is statistically significant or more likely to be due to random chance. There are three main types of t-test: independent sample t-tests, paired samples t-tests, and one-sample t-tests. 
 
@@ -52,7 +52,7 @@ For example, if we measure the speed of cars on a road and find that red cars dr
 
 When working with data, often we are interested not just in the data as a whole but in comparing across groups within the data. Take tennis for example: it would be interesting to know what the average serve speed was in a professional tournament, but what if we wanted to compare right hand serves to left hand serves? The *independent samples t-test* is the perfect tool for the job!
 
-    > An *independent samples t-test* compares the means of two separate samples.
+> An *independent samples t-test* compares the means of two separate samples.
 
 To perform this test, the means, standard deviations, and total number of observations for each group are needed. The formula can be simplified to this interpretation: 
 
