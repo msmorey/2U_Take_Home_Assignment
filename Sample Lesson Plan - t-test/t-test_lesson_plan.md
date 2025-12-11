@@ -54,25 +54,25 @@ When working with data, often we are interested not just in the data as a whole 
 
 To perform this test, the means, standard deviations, and total number of observations for each group are needed. The formula can be simplified to this interpretation: 
 
-    ```
-    t = (difference between group means​) / (variability of groups)
-    ```
+```txt
+t = (difference between group means​) / (variability of groups)
+```
 
 The `scipy` module gives us access to two ways to perform this test. You can calculate the means, standard deviations, and total number of rows for each group and enter them into the `ttest_ind_from_stats` function:
 
-    ```python
-    from scipy import stats
+```python
+from scipy import stats
 
-    t_value, p_value = stats.ttest_ind_from_stats(mean_A, std_A, count_A, mean_B, std_B, count_B)
-    ```
+t_value, p_value = stats.ttest_ind_from_stats(mean_A, std_A, count_A, mean_B, std_B, count_B)
+```
 
 Or you can use the more automated `ttest_ind` on Pandas Series. This version calculates the means, standard deviations, and row counts for you:
 
-    ```python
-    from scipy import stats
+```python
+from scipy import stats
 
-    t_value, p_value = stats.ttest_ind(series_A, series_B)
-    ```
+t_value, p_value = stats.ttest_ind(series_A, series_B)
+```
 
 Both methods will produce a verbose result that includes a p-value.
 
@@ -88,10 +88,10 @@ In this coding activity, you'll learn how to compare two sample means from the s
 
 2. Add the following library imports:
 
-    ```python
-    import pandas as pd
-    from scipy import stats
-    ```
+```python
+import pandas as pd
+from scipy import stats
+```
 
 2. Import the `tennis_serves.csv` file into a Pandas DataFrame.
 
@@ -107,17 +107,17 @@ In this coding activity, you'll learn how to compare two sample means from the s
 
 8. Use the following code with your own variables to compare the two means with an independent samples t-test:
 
-    ```python
-    t_stat, p_value = stats.ttest_ind_from_stats(rh_mean, rh_std, rh_obs, lh_mean, lh_std, lh_obs)
-    print(p_value)
-    ```
+```python
+t_stat, p_value = stats.ttest_ind_from_stats(rh_mean, rh_std, rh_obs, lh_mean, lh_std, lh_obs)
+print(p_value)
+```
 
 9. Try using the more automated `ttest_ind` function by using the following code with your own variables:
 
-    ```python
-    t_stat, p_value = stats.ttest_ind(rh_serves_df['Serve Speed'], lh_serves_df['Serve Speed'])
-    print(p_value)
-    ```
+```python
+t_stat, p_value = stats.ttest_ind(rh_serves_df['Serve Speed'], lh_serves_df['Serve Speed'])
+print(p_value)
+```
 
 10. Interpret the p-value to determine whether the differences are statistically significant.
 
@@ -125,67 +125,68 @@ In this coding activity, you'll learn how to compare two sample means from the s
 
 To begin, import all the necessary libraries including the `stats` portion of the `scipy` library.
 
-    ```python
-    import pandas as pd
-    from scipy import stats
-    ```
+```python
+import pandas as pd
+from scipy import stats
+```
+
 To compare left and right handed serves, we first need to separate out the left handed data from the right handed data using `loc`.
 
-    ```python
-    rh_serves_df = serves_df.loc[serves_df['Hand'] == 'R']
-    lh_serves_df = serves_df.loc[serves_df['Hand'] == 'L']
-    ```
+```python
+rh_serves_df = serves_df.loc[serves_df['Hand'] == 'R']
+lh_serves_df = serves_df.loc[serves_df['Hand'] == 'L']
+```
 
 For the `ttest_ind_from_stats` function, we'll need to calculate the mean, standard deviation, and row count of each DataFrame ourselves. We'll use the built in Pandas functions, but Numpy could also be used.
 
-    ```python
-    # Calculate mean, std, and row count for right handed serves.
-    rh_mean = rh_serves_df['Serve Speed'].mean()
-    rh_std = rh_serves_df['Serve Speed'].std()
-    rh_obs = rh_serves_df['Serve Speed'].count()
+```python
+# Calculate mean, std, and row count for right handed serves.
+rh_mean = rh_serves_df['Serve Speed'].mean()
+rh_std = rh_serves_df['Serve Speed'].std()
+rh_obs = rh_serves_df['Serve Speed'].count()
 
-    # Calculate mean, std, and row count for left handed serves.
-    lh_mean = lh_serves_df["Serve Speed"].mean()
-    lh_std = lh_serves_df["Serve Speed"].std()
-    lh_obs = lh_serves_df["Serve Speed"].count()
+# Calculate mean, std, and row count for left handed serves.
+lh_mean = lh_serves_df["Serve Speed"].mean()
+lh_std = lh_serves_df["Serve Speed"].std()
+lh_obs = lh_serves_df["Serve Speed"].count()
 
-    # Use f-strings to print the stats
-    print(f"The mean of right handed serves is {round(rh_mean, 2)} with a standard deviation of {round(rh_std, 2)} and {rh_obs} data points.")
-    print(f"The mean of left handed serves is {round(lh_mean, 2)} with a standard deviation of {round(lh_std, 2)} and {lh_obs} data points.")
-    ```
+# Use f-strings to print the stats
+print(f"The mean of right handed serves is {round(rh_mean, 2)} with a standard deviation of {round(rh_std, 2)} and {rh_obs} data points.")
+print(f"The mean of left handed serves is {round(lh_mean, 2)} with a standard deviation of {round(lh_std, 2)} and {lh_obs} data points.")
+```
 
 The output of the print statements is below:
 
-    ```text
-    The mean of right handed serves is 120.18 with a standard deviation of 6.11 and 11 data points.
-    The mean of left handed serves is 110.0 with a standard deviation of 5.29 and 8 data points.
-    ```
+```text
+The mean of right handed serves is 120.18 with a standard deviation of 6.11 and 11 data points.
+The mean of left handed serves is 110.0 with a standard deviation of 5.29 and 8 data points.
+```
 
 The right handed serves are, on average, 10mph faster. Is that difference just due to our sample or is this a *statistically significant* difference between serves? We'll use the `ttest_ind_from_stats` to find out.
 
-    ```python
-    t_stat, p_value = stats.ttest_ind_from_stats(rh_mean, rh_std, rh_obs, lh_mean, lh_std, lh_obs)
-    print(p_value)
-    ```
+```python
+t_stat, p_value = stats.ttest_ind_from_stats(rh_mean, rh_std, rh_obs, lh_mean, lh_std, lh_obs)
+print(p_value)
+```
 
 The output of the print statement is below:
 
-    ```text
-    0.0014768237288612883
-    ```
+```text
+0.0014768237288612883
+```
 
 Instead of calculating the means, standard deviations, and row counts ourselves, we could also have used `ttest_ind` to calculate the p-value directly from the left hand and right hand Pandas Series.
 
-    ```python
-    t_stat, p_value = stats.ttest_ind(rh_serves_df['Serve Speed'], lh_serves_df['Serve Speed'])
-    print(p_value)
-    ```
+```python
+t_stat, p_value = stats.ttest_ind(rh_serves_df['Serve Speed'], lh_serves_df['Serve Speed'])
+print(p_value)
+```
 
 The output of the print statement is below:
 
-    ```text
-    0.0014768237288612883
-    ```
+```text
+0.0014768237288612883
+```
 
 The results are the same, but note that by using `ttest_ind`, we don't learn what the means actually are. We are simply given the p-value.
 
